@@ -98,6 +98,11 @@ const Exchange: React.FC = () => {
         </motion.p>
       );
 
+    // Sort offerings by return value (assuming each offering has a 'return' property)
+    const sortedOfferings = [...matchedOfferings].sort((a, b) => {
+      return (b.data.payout || 0) - (a.data.payout || 0); // Sort in descending order
+    });
+
     if (Number(amount) > 0)
       return (
         <motion.div
@@ -132,6 +137,7 @@ const Exchange: React.FC = () => {
                 key={offering.metadata.id}
                 offering={offering as any}
                 amount={amount}
+                isBestReturn={index === 0}
               />
             ))}
           </motion.div>

@@ -12,6 +12,7 @@ import SettingsDrawer from "../ui/drawer/settings";
 import { SettingContent } from "../drawer/content/settings";
 import { WalletIcon } from "@heroicons/react/24/outline";
 import { WalletInput } from "../ui/input/wallet-address";
+import Spinner from "../spinner";
 
 export const SwapSection: React.FC<{
   selectedCurrencyPair: { from: string; to: string };
@@ -347,7 +348,8 @@ export const SwapSection: React.FC<{
               disabled={!isExchangeValid()}
               style={{ width: "calc(100% - 2.5rem)" }} // Set button width to occupy the rest of the space
             >
-              {isExchangeValid() ? "Review Exchange" : "Exchange"}
+              {isExchangeValid() ? "Review Exchange" : "Exchange"}{" "}
+              {isCreating && <Spinner />}
             </motion.button>
             <motion.button
               onClick={handleEditToggle}
