@@ -8,6 +8,7 @@ interface OfferingCardProps {
   returnAmount: string;
   provider: string;
   fees: string;
+  isBestReturn?: boolean;
 }
 
 export const OfferingCard: React.FC<OfferingCardProps> = ({
@@ -15,6 +16,7 @@ export const OfferingCard: React.FC<OfferingCardProps> = ({
   returnAmount,
   provider,
   fees,
+  isBestReturn,
 }) => {
   const providerName =
     Object.values(mockProviderDids).find((p) => p.uri === provider)?.name ||
@@ -27,14 +29,21 @@ export const OfferingCard: React.FC<OfferingCardProps> = ({
       transition={{ duration: 0.5 }}
       className="flex flex-col rounded-2xl my-4 bg-gradient-to-br from-blue-600 to-purple-700 p-6 shadow-lg"
     >
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.2, type: "spring", stiffness: 260, damping: 20 }}
-        className="rounded-full max-w-fit bg-green-400 px-3 py-1 mb-4 text-sm font-semibold text-gray-800"
-      >
-        Best Return
-      </motion.div>
+      {isBestReturn && ( // Conditionally render the "Best Return" label
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            delay: 0.2,
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+          }}
+          className="rounded-full max-w-fit bg-green-400 px-3 py-1 mb-4 text-sm font-semibold text-gray-800"
+        >
+          Best Return
+        </motion.div>
+      )}
       <div className="flex items-center gap-6">
         <motion.img
           whileHover={{ scale: 1.1, rotate: 360 }}

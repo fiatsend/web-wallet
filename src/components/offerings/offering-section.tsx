@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 export const OfferingSection: React.FC<{
   offering: Offering;
   amount: string;
-}> = ({ offering, amount }) => {
+  isBestReturn?: boolean;
+}> = ({ offering, amount, isBestReturn }) => {
   if (!offering) {
     return (
       <motion.div
@@ -31,6 +32,7 @@ export const OfferingSection: React.FC<{
         returnAmount={`${receivedAmount} ${offering.data.payout.currencyCode}`}
         provider={offering.metadata.from}
         fees={`${fees} ${offering.data.payout.currencyCode}`}
+        isBestReturn={isBestReturn}
       />
     </motion.div>
   );
